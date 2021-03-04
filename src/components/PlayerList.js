@@ -24,6 +24,10 @@ export default function PlayerList({ playerInfo }) {
     setResult(true);
   };
 
+  const updateFilterState = (filtered) => {
+    setSearchresult(filtered);
+  };
+
   const queryResults = () => {
     let filtered = [];
     if (query && query.length > 1) {
@@ -32,6 +36,12 @@ export default function PlayerList({ playerInfo }) {
         // name = name.replace(/\s/g, "");
         let pname = player.PFName.toLowerCase();
         let nameArr = pname.split(" ");
+        let Tname = player.CCode;
+
+        // if(query === )
+        if (query === Tname) {
+          return player;
+        }
 
         if (query === name) {
           return player;
@@ -41,7 +51,7 @@ export default function PlayerList({ playerInfo }) {
         return;
       });
       if (filtered.length > 0) {
-        setSearchresult(filtered);
+        updateFilterState(filtered);
       }
     }
     return filtered;
