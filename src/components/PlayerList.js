@@ -21,36 +21,12 @@ export default function PlayerList({ playerInfo }) {
 
   const handleQuery = (e) => {
     setQuery(e.target.value);
-
-    if (query && query.length > 1) {
-      let filtered = [];
-      filtered = playerInfo.filter((player) => {
-        let name = player.PFName;
-        // name = name.replace(/\s/g, "");
-        let pname = player.PFName.toLowerCase();
-        let nameArr = pname.split(" ");
-
-        if (query === name) {
-          return player;
-        } else if (nameArr.includes(query)) {
-          return player;
-        }
-        return;
-      });
-      if (filtered.length > 0) {
-        setSearchresult(filtered);
-      }
-      if (filtered.length === 0) {
-        setResult(false);
-      }
-    }
-
     setResult(true);
   };
 
-  useEffect(() => {
+  const queryResults = () => {
+    let filtered = [];
     if (query && query.length > 1) {
-      let filtered = [];
       filtered = playerInfo.filter((player) => {
         let name = player.PFName;
         // name = name.replace(/\s/g, "");
@@ -68,26 +44,20 @@ export default function PlayerList({ playerInfo }) {
         setSearchresult(filtered);
       }
     }
+    return filtered;
+  };
+
+  useEffect(() => {
+    queryResults();
+    return () => {
+      if (query && query.length === 1) {
+        setResult(false);
+      }
+    };
   }, [handleQuery]);
 
   const handleSearch = () => {
-    let filtered = [];
-    filtered = playerInfo.filter((player) => {
-      let name = player.PFName;
-      name = name.replace(/\s/g, "");
-      let pname = player.PFName.toLowerCase();
-      let nameArr = pname.split(" ");
-
-      if (name === query) {
-        return player;
-      } else if (nameArr.includes(query)) {
-        return player;
-      }
-      return;
-    });
-    if (filtered.length > 0) {
-      setSearchresult(filtered);
-    }
+    let filtered = queryResults();
     if (filtered.length === 0) {
       setResult(false);
     }
