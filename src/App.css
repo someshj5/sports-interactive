@@ -13,6 +13,10 @@
   }
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -28,6 +32,172 @@
   color: #61dafb;
 }
 
+/*FONT SIZE ///////////////////////////////////////////*/
+.fs-10 {
+  /*Slanted text*/
+  font-size: 10px;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.fs-13 {
+  font-size: 13px;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.fs-16 {
+  font-size: 16px;
+}
+
+.fs-18 {
+  /*removed for desktop check for phone*/
+  font-size: 18px;
+}
+
+.fs-20 {
+  font-size: 20px;
+}
+
+.fs-24 {
+  font-size: 24px;
+}
+
+.fs-26 {
+  font-size: 26px;
+}
+
+.fs-28 {
+  font-size: 28px;
+}
+
+.fs-32 {
+  font-size: 32px;
+}
+
+/*FONT WEIGHT /////////////////////////////////////////*/
+.fw-normal {
+  font-weight: normal;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
+/*FONT STYLE ///////////////////////////////////////////*/
+.f-style-normal {
+  font-style: normal;
+}
+
+/*FONT STRETCH //////////////////////////////////////////*/
+.f-stretch-normal {
+  font-stretch: normal;
+}
+
+.f-stretch-condensed {
+  font-stretch: condensed;
+}
+
+fc-white {
+  color: #ffffff;
+}
+
+.fc-white-2 {
+  color: #e2e2e2;
+}
+
+.fc-maroon {
+  color: #b50202;
+}
+
+.fc-red {
+  color: #c02627;
+}
+
+.fc-red9 {
+  color: #c02627;
+}
+
+.fc-darkbrown9 {
+  color: rgba(1, 0, 0, 0.9);
+}
+
+.fc-green {
+  color: #118a01;
+}
+
+.fc-blue {
+  color: #0048a6;
+}
+
+.fc-red229 {
+  color: rgba(229, 44, 45, 0.9);
+}
+.fc-grad-grey-disabled {
+  color: #a7a3a3;
+}
+.fc-brick {
+  color: #c8372c;
+}
+.fc-blue-link {
+  color: #003ecc;
+}
+.fc-blue-link:hover {
+  text-decoration: none;
+}
+
+.fc-grey {
+  color: #767474;
+}
+
+.border-bottom-nav {
+  border-bottom: solid 2px #c02627;
+}
+
+.bg-switch-button {
+  background: #e71f25;
+  /* border: solid 1px #ee4545; */
+}
+
+.border-radius-50 {
+  border-radius: 50%;
+  border: solid 1px #ee4545;
+}
+
+.border-radius-8 {
+  border-radius: 8%;
+  border: solid 1px #13cc13;
+}
+
+/*FONT WEIGHT /////////////////////////////////////////*/
+.fw-normal {
+  font-weight: normal;
+}
+
+.fw-500 {
+  font-weight: 500;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -35,4 +205,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.ff-montserrat {
+  font-family: Montserrat, serif;
 }

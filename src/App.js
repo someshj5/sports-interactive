@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import PlayerList from "./components/PlayerList";
+import Navbar from "./components/Navbar";
+import { getInfo } from "./service/productService";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
+  const [playerInfo, setPlayerInfo] = useState(null);
+  const [teamInfo, setTeamInfo] = useState(null);
+
+  const getPlayerInfo = async () => {
+    try {
+      const resp = await getInfo();
+      if (resp) {
+        setPlayerInfo(resp.playerList);
+        setTeamInfo(resp.teamsList);
+      }
+    } catch (err) {
+      console.log(err, `Something went wrong! ${err}`);
+    }
+  };
+
+  useEffect(() => {
+    getPlayerInfo();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <PlayerList
+              teamInfo={teamInfo && teamInfo}
+              playerInfo={playerInfo && playerInfo}
+            />
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 }
