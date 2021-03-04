@@ -19,8 +19,6 @@ export default function PlayerList({ playerInfo }) {
       return <PlayersCard player={player} idx={idx} />;
     });
 
-  const data = () => {};
-
   const handleQuery = (e) => {
     setQuery(e.target.value);
 
