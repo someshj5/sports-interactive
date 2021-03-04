@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PlayersCard from "../components/PlayersCard";
 import SearchBar from "./SearchBar";
 
@@ -19,32 +19,58 @@ export default function PlayerList({ playerInfo }) {
       return <PlayersCard player={player} idx={idx} />;
     });
 
+  const data = () => {};
+
   const handleQuery = (e) => {
     setQuery(e.target.value);
 
-    let filtered = [];
-    filtered = playerInfo.filter((player) => {
-      let name = player.PFName;
-      // name = name.replace(/\s/g, "");
-      let pname = player.PFName.toLowerCase();
-      let nameArr = pname.split(" ");
+    if (query && query.length > 1) {
+      let filtered = [];
+      filtered = playerInfo.filter((player) => {
+        let name = player.PFName;
+        // name = name.replace(/\s/g, "");
+        let pname = player.PFName.toLowerCase();
+        let nameArr = pname.split(" ");
 
-      if (query === name) {
-        return player;
-      } else if (nameArr.includes(query)) {
-        return player;
+        if (query === name) {
+          return player;
+        } else if (nameArr.includes(query)) {
+          return player;
+        }
+        return;
+      });
+      if (filtered.length > 0) {
+        setSearchresult(filtered);
       }
-      return;
-    });
-    if (filtered.length > 0) {
-      setSearchresult(filtered);
-    }
-    if (filtered.length === 0) {
-      setResult(false);
+      if (filtered.length === 0) {
+        setResult(false);
+      }
     }
 
     setResult(true);
   };
+
+  useEffect(() => {
+    if (query && query.length > 1) {
+      let filtered = [];
+      filtered = playerInfo.filter((player) => {
+        let name = player.PFName;
+        // name = name.replace(/\s/g, "");
+        let pname = player.PFName.toLowerCase();
+        let nameArr = pname.split(" ");
+
+        if (query === name) {
+          return player;
+        } else if (nameArr.includes(query)) {
+          return player;
+        }
+        return;
+      });
+      if (filtered.length > 0) {
+        setSearchresult(filtered);
+      }
+    }
+  }, [handleQuery]);
 
   const handleSearch = () => {
     let filtered = [];
