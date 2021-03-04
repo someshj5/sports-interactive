@@ -6,9 +6,11 @@ export default function PlayersCard({ player, idx }) {
   let value = player.Value;
   let upcoming = player.UpComingMatchesList[0];
   return (
-    <div key={idx} className="card  border-radius-8 col-3 my-3 p-4 mx-3">
+    <div key={idx} className="card  border-radius-8  my-3 p-4 mx-3">
       <img
         className="border-radius-50 "
+        height="200px"
+        width="200px"
         src={`${process.env.PUBLIC_URL}/player-images/${player.Id}.jpg`}
         alt={`${player.Id}`}
       />
@@ -22,8 +24,13 @@ export default function PlayersCard({ player, idx }) {
       <div className="mt-1">
         Upcoming match
         <div>
-          <span className="fc-red">{upcoming.CCode}</span> vs{" "}
-          <span className="fc-grey">{upcoming.VsCCode}</span>
+          <span className="fc-red">
+            {(upcoming.CCode && upcoming.CCode) || "-"}
+          </span>{" "}
+          vs{" "}
+          <span className="fc-grey">
+            {(upcoming.VsCCode && upcoming.VsCCode) || "-"}
+          </span>
           <div className="fs-14 fc-brick">{upcoming.MDate}</div>
         </div>
       </div>

@@ -6,16 +6,44 @@ export default function PlayerList({ playerInfo }) {
   const [query, setQuery] = useState(null);
   const [result, setResult] = useState(false);
   const [searchresult, setSearchresult] = useState([]);
-  let playerNames =
+
+  const sorted =
     playerInfo &&
-    playerInfo.map((player, idx) => {
+    playerInfo.sort((a, b) => {
+      return a.Value - b.Value;
+    });
+
+  let playerNames =
+    sorted &&
+    sorted.map((player, idx) => {
       return <PlayersCard player={player} idx={idx} />;
     });
 
   const handleQuery = (e) => {
-    let str = e.target.value;
-    str = str.replace(/\s/g, "");
-    setQuery(str);
+    setQuery(e.target.value);
+
+    let filtered = [];
+    filtered = playerInfo.filter((player) => {
+      let name = player.PFName;
+      // name = name.replace(/\s/g, "");
+      let pname = player.PFName.toLowerCase();
+      let nameArr = pname.split(" ");
+
+      if (query === name) {
+        return player;
+      } else if (nameArr.includes(query)) {
+        return player;
+      }
+      return;
+    });
+    if (filtered.length > 0) {
+      setSearchresult(filtered);
+    }
+    if (filtered.length === 0) {
+      setResult(false);
+    }
+
+    setResult(true);
   };
 
   const handleSearch = () => {
@@ -39,7 +67,6 @@ export default function PlayerList({ playerInfo }) {
     if (filtered.length === 0) {
       setResult(false);
     }
-
     setResult(true);
   };
 
@@ -47,26 +74,32 @@ export default function PlayerList({ playerInfo }) {
     searchresult.length > 0 &&
     searchresult.map((player, idx) => {
       return (
-        <div key={idx} className="container offset-4">
+        <div key={idx} className="">
           <PlayersCard player={player} idx={idx} />
         </div>
       );
     });
   return (
-    <div className="container offset-3">
+    <div className="">
       <SearchBar handleSearch={handleSearch} handleQuery={handleQuery} />
       {!result ? (
         <>
           {playerNames && playerNames.length > 0 ? (
-            <div className="row ml-5">{playerNames}</div>
+            <div className="container ">
+              <div className="row">{playerNames}</div>
+            </div>
           ) : (
-            <div className="fs-18  py-5">Please wait! Fetching Categories</div>
+            <div className="fs-18  py-5">
+              Please wait! Fetching Players list
+            </div>
           )}
         </>
       ) : (
         <>
           {SearchresultData && SearchresultData.length > 0 ? (
-            <div>{SearchresultData}</div>
+            <div className="container offset-3">
+              <div className="row">{SearchresultData}</div>
+            </div>
           ) : (
             <div>Searching....</div>
           )}

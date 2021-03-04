@@ -11,9 +11,9 @@ export default function SearchBar({ handleQuery, handleSearch }) {
             placeholder="Search......"
             onChange={handleQuery}
           />
-          <div class="input-group-append cursor-pointer">
+          <div onClick={handleSearch} class="input-group-append cursor-pointer">
             <span class="input-group-text">
-              <i onClick={handleSearch} class="fa fa-search"></i>
+              <i class="fa fa-search"></i>
             </span>
           </div>
         </div>
